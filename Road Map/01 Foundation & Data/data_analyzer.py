@@ -28,12 +28,12 @@ for col in df.columns:
     print("=" * 70)
     print(f"Unique values: {unique_count:,}")
     print(f"Null values: {null_count:,} ({null_pct:.1f}%)")
-    
+
     # SPECIAL HANDLING FOR DESCRIPTION - Show with Primary Type
     if col == 'Description':
         print(f"\nData type: CATEGORICAL (large set - {unique_count} categories)")
         print("\nTop 20 most common (showing as 'PRIMARY TYPE - DESCRIPTION'):")
-        
+
         # Create combined column
         combined = df['Primary Type'] + ' - ' + df['Description']
         value_counts = combined.value_counts().head(20)
@@ -41,7 +41,7 @@ for col in df.columns:
         for value, count in value_counts.items():
             pct = (count / len(df)) * 100
             print(f"  {value:60s}: {count:7,} ({pct:5.2f}%)")
-    
+
     # If categorical (< 100 unique values), show them all
     elif unique_count < 100:
         print(f"\nData type: CATEGORICAL ({unique_count} categories)")
@@ -50,7 +50,7 @@ for col in df.columns:
         for value, count in value_counts.items():
             pct = (count / len(df)) * 100
             print(f"  {str(value):50s}: {count:7,} ({pct:5.2f}%)")
-    
+
     # If many unique values, show top 20
     elif unique_count < 1000:
         print(f"\nData type: CATEGORICAL (large set - {unique_count} categories)")
@@ -59,7 +59,7 @@ for col in df.columns:
         for value, count in value_counts.items():
             pct = (count / len(df)) * 100
             print(f"  {str(value):50s}: {count:7,} ({pct:5.2f}%)")
-    
+
     # If tons of unique values, probably continuous or free-text
     else:
         print(f"\nData type: CONTINUOUS or FREE-TEXT ({unique_count:,} unique values)")
@@ -71,3 +71,4 @@ for col in df.columns:
 print("=" * 70)
 print("ANALYSIS COMPLETE")
 print("=" * 70)
+

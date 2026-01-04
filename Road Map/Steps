@@ -1,24 +1,24 @@
 Data acquired 
 
     https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data
-    chicago_crime_2001_2025_(raw).csv
+    created - chicago_crime_2001_2025_(raw).csv
 
 Data Previewed
 
     preview_data.py
-    preview_data_100.csv
+    created - preview_data_100.csv
 
 Data Rows Truncated to 2021-2025
 
     data_row_truncator_2023_2025.py
-    chicago_crime_2023_2025.csv
+    created - chicago_crime_2023_2025.csv
 
-Data Columns Truncated to 7 
+Data Columns Truncated to Date,Primary Type,Description,Community Area,Domestic,Latitude,Longitude
 
     data_column_truncator.py
-    chicago_crime_2023_2025_7_rows.csv
+    created - chicago_crime_2023_2025_7_rows.csv
 
-Data Analyzed
+Data Analyzed 
 
     data_analyzer.py
 
@@ -27,6 +27,7 @@ Domestics Removed
     domestic_remove.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
 
-"Primary Type" Engineering
+"Primary Type" Engineering Removed -'NARCOTICS', 'WEAPONS VIOLATION', 'CONCEALED CARRY LICENSE VIOLATION', 'LIQUOR LAW VIOLATION', 'PROSTITUTION', 'GAMBLING', 'PUBLIC INDECENCY', 'INTERFERENCE WITH PUBLIC OFFICER', 'OTHER NARCOTIC VIOLATION', 'NON-CRIMINAL', 'OTHER OFFENSE', 'OBSCENITY', 'STALKING','DECEPTIVE PRACTICE','OFFENSE INVOLVING CHILDREN'
 
+    remove_enforcement_crimes.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
