@@ -1,0 +1,42 @@
+# Large data files - don't upload to GitHub
+*.csv
+!preview_*.csv
+*.xlsx
+*.json
+*.parquet
+
+# Virtual environment
+venv/
+env/
+*.pyc
+__pycache__/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Model files (will be too large later)
+*.pkl
+*.h5
+*.joblib
+*.model
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python
+*.egg-info/
+dist/
+build/
+
+# Outputs (optional - uncomment if you want to exclude)
+# *.png
+# *.jpg
+# *.pdf
