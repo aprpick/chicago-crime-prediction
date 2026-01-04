@@ -1,0 +1,53 @@
+Week 5-6: Build Dashboard & Deploy
+Goals: Create professional Power BI dashboard
+Dashboard Components:
+Page 1: Overview
+
+Map of Calgary with hotspots highlighted (heatmap)
+Total crimes by type (bar chart)
+Trend over time (line chart)
+Key metrics: total crimes, % change, high-risk zones
+
+Page 2: Predictions
+
+Next week's predicted hotspots (map)
+Crime type predictions by zone
+Recommended patrol allocation
+Confidence levels for predictions
+
+Page 3: Resource Allocation
+
+Optimize patrol routes based on predictions
+Show: current vs. recommended deployment
+Calculate: potential crimes prevented
+
+Tasks:
+
+Integrate Python + Power BI
+
+Use Python visuals in Power BI OR
+Export predictions to CSV, import to Power BI
+
+
+Create DAX Measures
+
+Example: Crime Rate = DIVIDE([Total Crimes], [Population])
+Calculate KPIs: % change, averages, rankings
+
+
+Design Professional Dashboard
+
+Use police-appropriate colors (blues, professional)
+Clear labels and legends
+Interactive filters (date range, crime type, district)
+
+
+Add Interactivity
+
+Click neighborhood → see details
+Adjust date → predictions update
+Filter by crime type
+
+
+
+Deliverable: Interactive Power BI dashboard (.pbix file)

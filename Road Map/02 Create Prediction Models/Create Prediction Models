@@ -1,0 +1,32 @@
+Week 3-4: Build ML Models
+Goals: Create prediction models
+Models to Build:
+Model 1: Crime Type Classification (Easier)
+
+Predict what TYPE of crime will occur given location/time
+Use: Random Forest or XGBoost
+Features: hour, day of week, month, neighborhood, weather
+
+Model 2: Hotspot Prediction (Medium)
+
+Predict WHERE crimes will occur
+Grid the city into zones
+Use: Random Forest for classification (which zones are high-risk)
+Features: historical crime density, time periods, demographics
+
+Model 3: Time Series Forecasting (Harder - optional for v1)
+
+Predict WHEN crime spikes will occur
+Start with ARIMA (simpler)
+If time: Try LSTM
+Forecast: weekly/monthly crime volumes
+
+Tasks:
+
+Feature engineering (create useful variables from raw data)
+Train/test split (use older data to predict recent data)
+Model training and tuning
+Evaluate with metrics: accuracy, F1-score, RMSE
+Save models (pickle/joblib)
+
+Deliverable: 2-3 trained models with >75% accuracy
