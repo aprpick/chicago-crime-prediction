@@ -7,7 +7,7 @@ import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025_7_rows_(working).csv')
+input_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
 
 print("=" * 80)
 print("PRIMARY TYPES AND THEIR DESCRIPTION SUBCATEGORIES")

@@ -9,8 +9,8 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Path to your Chicago crime CSV (in same folder as this script)
-csv_file = os.path.join(script_dir, 'chicago_crime_2001_2025_(raw).csv')
-output_file = os.path.join(script_dir, 'preview_100.csv')
+csv_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+output_file = os.path.join(script_dir, '02_preview.csv')
 
 print("=" * 70)
 print("CREATING PREVIEW CSV")
@@ -44,5 +44,5 @@ if 'Primary Type' in df.columns:
         print(f"  {crime}: {count}")
 
 print("\n" + "=" * 70)
-print(f"✓ Done! Use 'preview_100.csv' for quick testing")
+print(f"✓ Done! Use '02_preview.csv' for quick testing")
 print("=" * 70)

@@ -9,7 +9,7 @@ import os
 # Get script directory and find CSV
 script_dir = os.path.dirname(os.path.abspath(__file__))
 input_file = os.path.join(script_dir, 'chicago_crime_2001_2025_(raw).csv')
-output_file = os.path.join(script_dir, 'chicago_crime_2023_2025.csv')
+output_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
 
 print("=" * 70)
 print("CREATING FILTERED DATASET - 2023-2025 (750K ROWS)")

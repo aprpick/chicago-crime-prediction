@@ -55,3 +55,8 @@ Add Severity Score Column
 
     add_severity_scores.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
+
+Removing Unecessary Columns - Description, Domestic, Latitude, Longitude 
+
+    12_unnecessary_columns_remove.py
+    edited - chicago_crime_2023_2025_7_rows_(working).csv
