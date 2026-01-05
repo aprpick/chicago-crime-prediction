@@ -6,8 +6,8 @@ import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, '15_chicago_weather_2023_2025.csv')
-output_file = os.path.join(script_dir, '15_chicago_weather_2023_2025.csv')
+input_file = os.path.join(script_dir, '16_chicago_weather_with_DI.csv')
+output_file = os.path.join(script_dir, '17_chicago_weather_2023_2025_truncated.csv')
 
 print("=" * 70)
 print("TRIMMING WEATHER DATASET TO ESSENTIAL COLUMNS (3 COLUMNS)")
@@ -15,9 +15,9 @@ print("=" * 70)
 
 # Columns to keep (3 essential only)
 keep_cols = [
-    'temp',
-    'rhum',
-    'prcp',
+    'datetime',
+    'heat_DI',
+    'cold_DI',
 ]
 
 print(f"\nReading: {input_file}")
