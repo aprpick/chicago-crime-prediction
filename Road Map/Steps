@@ -22,12 +22,20 @@ Data Analyzed
 
     data_analyzer.py
 
-Domestics Removed
+"Domestic = True" Removed
 
     domestic_remove.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
 
-"Primary Type" Engineering Removed -'NARCOTICS', 'WEAPONS VIOLATION', 'CONCEALED CARRY LICENSE VIOLATION', 'LIQUOR LAW VIOLATION', 'PROSTITUTION', 'GAMBLING', 'PUBLIC INDECENCY', 'INTERFERENCE WITH PUBLIC OFFICER', 'OTHER NARCOTIC VIOLATION', 'NON-CRIMINAL', 'OTHER OFFENSE', 'OBSCENITY', 'STALKING','DECEPTIVE PRACTICE','OFFENSE INVOLVING CHILDREN'
+"Primary Type" Removed -'NARCOTICS', 'WEAPONS VIOLATION', 'CONCEALED CARRY LICENSE VIOLATION', 'LIQUOR LAW VIOLATION', 'PROSTITUTION', 'GAMBLING', 'PUBLIC INDECENCY', 'INTERFERENCE WITH PUBLIC OFFICER', 'OTHER NARCOTIC VIOLATION', 'NON-CRIMINAL', 'OTHER OFFENSE', 'OBSCENITY', 'STALKING','DECEPTIVE PRACTICE','OFFENSE INVOLVING CHILDREN'
 
     remove_enforcement_crimes.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
+
+Unique Identifiers added to each row
+
+    unique_identifier.py
+    edited - chicago_crime_2023_2025_7_rows_(working).csv
+
+Adding Temporal Features - houre,day,month,weekend,holiday
+

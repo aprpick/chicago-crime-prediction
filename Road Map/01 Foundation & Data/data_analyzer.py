@@ -1,6 +1,7 @@
 """
 Analyze data types and unique values in each column
 Modified to show Primary Type with Description
+Shows ALL descriptions (not just top 20)
 """
 
 import pandas as pd
@@ -22,7 +23,7 @@ for col in df.columns:
     unique_count = df[col].nunique()
     null_count = df[col].isnull().sum()
     null_pct = (null_count / len(df)) * 100
-    
+
     print("=" * 70)
     print(f"COLUMN: {col}")
     print("=" * 70)
@@ -32,18 +33,18 @@ for col in df.columns:
     # SPECIAL HANDLING FOR DESCRIPTION - Show with Primary Type
     if col == 'Description':
         print(f"\nData type: CATEGORICAL (large set - {unique_count} categories)")
-        print("\nTop 20 most common (showing as 'PRIMARY TYPE - DESCRIPTION'):")
+        print(f"\nALL {unique_count} combinations (showing as 'PRIMARY TYPE - DESCRIPTION'):")
 
         # Create combined column
         combined = df['Primary Type'] + ' - ' + df['Description']
-        value_counts = combined.value_counts().head(20)
+        value_counts = combined.value_counts()  # ← REMOVED .head(20) to show ALL
         
         for value, count in value_counts.items():
             pct = (count / len(df)) * 100
             print(f"  {value:60s}: {count:7,} ({pct:5.2f}%)")
 
-    # If categorical (< 100 unique values), show them all
-    elif unique_count < 100:
+    # If categorical (< 150 unique values), show them all
+    elif unique_count < 150:
         print(f"\nData type: CATEGORICAL ({unique_count} categories)")
         print("\nAll values with counts:")
         value_counts = df[col].value_counts()
@@ -51,11 +52,11 @@ for col in df.columns:
             pct = (count / len(df)) * 100
             print(f"  {str(value):50s}: {count:7,} ({pct:5.2f}%)")
 
-    # If many unique values, show top 20
+    # If many unique values, show top 50
     elif unique_count < 1000:
         print(f"\nData type: CATEGORICAL (large set - {unique_count} categories)")
-        print("\nTop 20 most common values:")
-        value_counts = df[col].value_counts().head(20)
+        print("\nTop 50 most common values:")
+        value_counts = df[col].value_counts().head(50)
         for value, count in value_counts.items():
             pct = (count / len(df)) * 100
             print(f"  {str(value):50s}: {count:7,} ({pct:5.2f}%)")
@@ -71,4 +72,3 @@ for col in df.columns:
 print("=" * 70)
 print("ANALYSIS COMPLETE")
 print("=" * 70)
-
