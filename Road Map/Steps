@@ -8,6 +8,10 @@ Data Previewed
     preview_data.py
     created - preview_data_100.csv
 
+Date Sorting Confirmed
+
+    sorting_checker.py
+
 Data Rows Truncated to 2021-2025
 
     data_row_truncator_2023_2025.py
@@ -44,4 +48,9 @@ Analyze "Primary Type" + "Description" for Severity Scoring
 Remove rare "Primary Type" + "Description" Combinations for severity calculation
 
     remove_rare_combinations.py
+    edited - chicago_crime_2023_2025_7_rows_(working).csv
+
+Add Severity Score Column
+
+    add_severity_scores.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
