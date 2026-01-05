@@ -27,15 +27,21 @@ Data Analyzed
     domestic_remove.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
 
-"Primary Type" Removed -'NARCOTICS', 'WEAPONS VIOLATION', 'CONCEALED CARRY LICENSE VIOLATION', 'LIQUOR LAW VIOLATION', 'PROSTITUTION', 'GAMBLING', 'PUBLIC INDECENCY', 'INTERFERENCE WITH PUBLIC OFFICER', 'OTHER NARCOTIC VIOLATION', 'NON-CRIMINAL', 'OTHER OFFENSE', 'OBSCENITY', 'STALKING','DECEPTIVE PRACTICE','OFFENSE INVOLVING CHILDREN'
+"Primary Type"s Removed -'NARCOTICS', 'WEAPONS VIOLATION', 'CONCEALED CARRY LICENSE VIOLATION', 'LIQUOR LAW VIOLATION', 'PROSTITUTION', 'GAMBLING', 'PUBLIC INDECENCY', 'INTERFERENCE WITH PUBLIC OFFICER', 'OTHER NARCOTIC VIOLATION', 'NON-CRIMINAL', 'OTHER OFFENSE', 'OBSCENITY', 'STALKING','DECEPTIVE PRACTICE','OFFENSE INVOLVING CHILDREN'
 
     remove_enforcement_crimes.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
 
-Unique Identifiers added to each row
+Unique Identifiers Added to Each Row
 
     unique_identifier.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
 
-Adding Temporal Features - houre,day,month,weekend,holiday
+Analyze "Primary Type" + "Description" for Severity Scoring
 
+    severity_analyzer.py
+
+Remove rare "Primary Type" + "Description" Combinations for severity calculation
+
+    remove_rare_combinations.py
+    edited - chicago_crime_2023_2025_7_rows_(working).csv
