@@ -7,7 +7,7 @@ import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 input_file = os.path.join(script_dir, 'chicago_crime_2023_2025.csv')
-output_file = os.path.join(script_dir, 'chicago_crime_clean.csv')
+output_file = os.path.join(script_dir, 'chicago_crime_2023_2025_7_columns.csv')
 
 print("=" * 70)
 print("TRIMMING DATASET TO ESSENTIAL COLUMNS (7 COLUMNS)")
@@ -15,6 +15,7 @@ print("=" * 70)
 
 # Columns to keep (7 essential only)
 keep_cols = [
+    'Crime_ID',
     'Date',
     'Primary Type', 
     'Description',

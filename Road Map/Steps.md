@@ -3,6 +3,11 @@ Data acquired
     https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data
     created - chicago_crime_2001_2025_(raw).csv
 
+Unique Identifiers Added to Each Row
+
+    unique_identifier.py
+    edited - chicago_crime_2001_2025_(raw).csv
+
 Data Previewed
 
     preview_data.py
@@ -29,17 +34,13 @@ Data Analyzed
 "Domestic = True" Removed
 
     domestic_remove.py
-    edited - chicago_crime_2023_2025_7_rows_(working).csv
+    created - chicago_crime_2023_2025_7_rows_(working).csv
 
 "Primary Type"s Removed -'NARCOTICS', 'WEAPONS VIOLATION', 'CONCEALED CARRY LICENSE VIOLATION', 'LIQUOR LAW VIOLATION', 'PROSTITUTION', 'GAMBLING', 'PUBLIC INDECENCY', 'INTERFERENCE WITH PUBLIC OFFICER', 'OTHER NARCOTIC VIOLATION', 'NON-CRIMINAL', 'OTHER OFFENSE', 'OBSCENITY', 'STALKING','DECEPTIVE PRACTICE','OFFENSE INVOLVING CHILDREN'
 
     remove_enforcement_crimes.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
 
-Unique Identifiers Added to Each Row
-
-    unique_identifier.py
-    edited - chicago_crime_2023_2025_7_rows_(working).csv
 
 Analyze "Primary Type" + "Description" for Severity Scoring
 

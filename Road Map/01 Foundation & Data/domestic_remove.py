@@ -1,19 +1,21 @@
 """
-Remove domestic crimes from working dataset
-Edits the file directly (overwrites it)
+Remove domestic crimes from dataset
+Reads from: chicago_crime_2023_2025_7_columns.csv
+Creates: chicago_crime_2023_2025_7_rows_(working).csv
 """
 
 import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025_7_rows_(working).csv')
+input_file = os.path.join(script_dir, 'chicago_crime_2023_2025_7_columns.csv')
+output_file = os.path.join(script_dir, 'chicago_crime_2023_2025_7_rows_(working).csv')
 
 print("=" * 70)
 print("REMOVING DOMESTIC CRIMES")
 print("=" * 70)
-print(f"\nFile: {input_file}")
-print("\n⚠️  WARNING: This will overwrite the file directly!")
+print(f"\nInput:  {input_file}")
+print(f"Output: {output_file}")
 
 # Read data
 print("\n[1/3] Reading data...")
@@ -35,15 +37,17 @@ removed = len(df) - len(df_filtered)
 print(f"      Removed: {removed:,} rows")
 print(f"      Remaining: {len(df_filtered):,} rows")
 
-# Save back to same file
-print(f"\n[3/3] Saving to: {input_file}")
-df_filtered.to_csv(input_file, index=False)
+# Save to new file
+print(f"\n[3/3] Saving to: {output_file}")
+df_filtered.to_csv(output_file, index=False)
 
-file_size_mb = os.path.getsize(input_file) / (1024 * 1024)
+file_size_mb = os.path.getsize(output_file) / (1024 * 1024)
 
 print("\n" + "=" * 70)
 print("✓ COMPLETE!")
 print("=" * 70)
+print(f"Input:  chicago_crime_2023_2025_7_columns.csv")
+print(f"Output: chicago_crime_2023_2025_7_rows_(working).csv")
 print(f"Rows: {len(df_filtered):,}")
 print(f"File size: {file_size_mb:.1f} MB")
 print(f"Domestic crimes removed: {removed:,}")
