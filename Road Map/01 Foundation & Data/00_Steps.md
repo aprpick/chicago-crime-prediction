@@ -65,3 +65,8 @@ Adding Weekend Features - weekend_night_peak (Fri 8pm-Sat 3am, Sat 8pm-Sun 3am) 
 
     13_adding_weekends.py
     edited - chicago_crime_2023_2025_7_rows_(working).csv
+
+Adding Holidays - theft/violence prone occasions
+
+    14_adding_holidays.py
+    edited - chicago_crime_2023_2025_7_rows_(working).csv
