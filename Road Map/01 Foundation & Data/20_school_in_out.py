@@ -151,8 +151,8 @@ def add_school_calendar_feature(input_file):
 
 if __name__ == "__main__":
     # File path
-    INPUT_FILE = R'C:\Users\14037\Downloads\CPS\CPS Crime Prediction APP\Road Map\01 Foundation & Data\chicago_crime_2023_2025(working).csv'
-    
+    INPUT_FILE = 'chicago_crime_2023_2025(working).csv'
+        
     print("="*60)
     print("Adding School Calendar Feature (Hourly: 8am-3pm)")
     print("="*60)
