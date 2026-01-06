@@ -94,7 +94,13 @@ Weather DI Values averaged out over 6 hour periods
 Weather DI Added to Working CSV
 
     19_DI_added_to_working.py
+    edited - 15_chicago_weather_2023_2025.csv
     
 School in/out
 
     20_school_in_out.py
+    edited - 15_chicago_weather_2023_2025.csv
+
+Adding big events - Lollapalooza, Chicago Marathon, Pride Parade, St. Patrick's Day Parade
+
+    
