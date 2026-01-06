@@ -80,3 +80,21 @@ Truncating weather data
 
     16_weather_data_column_truncator.py
     edited - 15_chicago_weather_2023_2025.csv
+
+Weather Columns Truncated
+
+    17_weather_data_column_truncator.py
+    created - 17_chicago_weather_2023_2025_truncated.csv
+
+Weather DI Values averaged out over 6 hour periods
+
+    18_adding_DI_to_working.py
+    created - 18_chicago_weather_6hr_grouped.csv
+
+Weather DI Added to Working CSV
+
+    19_DI_added_to_working.py
+    
+School in/out
+
+    20_school_in_out.py
