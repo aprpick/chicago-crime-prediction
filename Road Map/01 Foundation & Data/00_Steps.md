@@ -110,3 +110,8 @@ Adding moon illumation
 
     22_moon_illumination.py
     edited - 15_chicago_weather_2023_2025.csv
+
+Adding sun brightness
+    
+    23_add_solar_altitude.py
+    23_solar_altitude.csv
