@@ -103,4 +103,10 @@ School in/out
 
 Adding big events - Lollapalooza, Chicago Marathon, Pride Parade, St. Patrick's Day Parade
 
-    
+    21_big_events.py
+    edited - 15_chicago_weather_2023_2025.csv
+
+Adding moon illumation 
+
+    22_moon_illumination.py
+    edited - 15_chicago_weather_2023_2025.csv
