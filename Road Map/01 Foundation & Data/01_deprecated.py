@@ -2,6 +2,7 @@
 Add unique identifier column to dataset
 Edits the file directly (overwrites it)
 """
+exit("deprecated")
 
 import pandas as pd
 import os

@@ -9,7 +9,7 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Path to your Chicago crime CSV (in same folder as this script)
-csv_file = os.path.join(script_dir, '18.1_3hour_blocks_with_zeros.csv')
+csv_file = os.path.join(script_dir, '23.1_solar_altitude_added.csv')
 output_file = os.path.join(script_dir, '02.1_preview.csv')
 
 print("=" * 70)
