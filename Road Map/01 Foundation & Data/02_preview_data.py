@@ -9,8 +9,8 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Path to your Chicago crime CSV (in same folder as this script)
-csv_file = os.path.join(script_dir, '27_shift_data_for_model.csv')
-output_file = os.path.join(script_dir, '02_preview.csv')
+csv_file = os.path.join(script_dir, '18.1_3hour_blocks_with_zeros.csv')
+output_file = os.path.join(script_dir, '02.1_preview.csv')
 
 print("=" * 70)
 print("CREATING PREVIEW CSV")

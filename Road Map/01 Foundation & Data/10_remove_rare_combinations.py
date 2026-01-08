@@ -1,19 +1,29 @@
 """
 Remove rare PRIMARY TYPE + DESCRIPTION combinations (< 100 crimes)
-Edits the file directly (overwrites it)
+Reads from: 09.1_severity_analyzed.csv
+Writes to: 10.1_rare_combos_removed.csv
 """
+
+# ============================================================
+# FILE PATHS - CONFIGURE HERE
+# ============================================================
+INPUT_FILE = '08.1_enforcement_crimes_removed.csv'
+OUTPUT_FILE = '10.1_rare_combos_removed.csv'
+THRESHOLD = 100  # Minimum crimes per combination to keep
+# ============================================================
 
 import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+input_file = os.path.join(script_dir, INPUT_FILE)
+output_file = os.path.join(script_dir, OUTPUT_FILE)
 
 print("=" * 80)
-print("REMOVING RARE PRIMARY TYPE + DESCRIPTION COMBINATIONS (< 100 crimes)")
+print(f"REMOVING RARE PRIMARY TYPE + DESCRIPTION COMBINATIONS (< {THRESHOLD} crimes)")
 print("=" * 80)
-print(f"\nFile: {input_file}")
-print("\n⚠️  WARNING: This will overwrite the file directly!")
+print(f"\nInput:  {INPUT_FILE}")
+print(f"Output: {OUTPUT_FILE}")
 
 # Read data
 print("\n[1/4] Reading data...")
@@ -25,12 +35,11 @@ print(f"      Original unique combinations: {df.groupby(['Primary Type', 'Descri
 print("\n[2/4] Identifying rare combinations...")
 combo_counts = df.groupby(['Primary Type', 'Description']).size()
 
-# Identify rare combinations (< 100 crimes)
-threshold = 100
-rare_combos = combo_counts[combo_counts < threshold]
-keep_combos = combo_counts[combo_counts >= threshold]
+# Identify rare combinations (< threshold crimes)
+rare_combos = combo_counts[combo_counts < THRESHOLD]
+keep_combos = combo_counts[combo_counts >= THRESHOLD]
 
-print(f"      Threshold: {threshold} crimes")
+print(f"      Threshold: {THRESHOLD} crimes")
 print(f"      Combinations to REMOVE: {len(rare_combos)}")
 print(f"      Combinations to KEEP: {len(keep_combos)}")
 
@@ -61,7 +70,7 @@ print("=" * 80)
 # Filter out rare combinations
 print(f"\n[3/4] Filtering data...")
 mask = df.apply(
-    lambda row: combo_counts.get((row['Primary Type'], row['Description']), 0) >= threshold,
+    lambda row: combo_counts.get((row['Primary Type'], row['Description']), 0) >= THRESHOLD,
     axis=1
 )
 df_filtered = df[mask].copy()
@@ -83,15 +92,17 @@ for primary, count in subcats_remaining.items():
     original_count = df[df['Primary Type'] == primary]['Description'].nunique()
     print(f"        {primary:30s}: {count:2d} (was {original_count})")
 
-# Save
-print(f"\n[4/4] Saving to: {input_file}")
-df_filtered.to_csv(input_file, index=False)
+# Save to new file
+print(f"\n[4/4] Saving to: {OUTPUT_FILE}")
+df_filtered.to_csv(output_file, index=False)
 
-file_size_mb = os.path.getsize(input_file) / (1024 * 1024)
+file_size_mb = os.path.getsize(output_file) / (1024 * 1024)
 
 print("\n" + "=" * 80)
 print("✓ COMPLETE!")
 print("=" * 80)
+print(f"Input:  {INPUT_FILE}")
+print(f"Output: {OUTPUT_FILE}")
 print(f"Rows: {len(df_filtered):,}")
 print(f"Unique combinations: {remaining_combos}")
 print(f"File size: {file_size_mb:.1f} MB")

@@ -8,7 +8,7 @@ import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+input_file = os.path.join(script_dir, '05.1_columns_removed.csv')
 
 print("=" * 70)
 print("DATA TYPE ANALYSIS")

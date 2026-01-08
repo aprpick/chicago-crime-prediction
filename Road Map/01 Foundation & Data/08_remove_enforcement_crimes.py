@@ -1,19 +1,27 @@
 """
 Remove enforcement-driven and non-predictable crimes
-Edits the file directly (overwrites it)
+Reads from 07.1_domestics_removed.csv and saves to 08.1_enforcement_crimes_removed.csv
 """
+
+# ============================================================
+# FILE PATHS - CONFIGURE HERE
+# ============================================================
+INPUT_FILE = '07.1_domestics_removed.csv'
+OUTPUT_FILE = '08.1_enforcement_crimes_removed.csv'
+# ============================================================
 
 import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+input_file = os.path.join(script_dir, INPUT_FILE)
+output_file = os.path.join(script_dir, OUTPUT_FILE)
 
 print("=" * 70)
 print("REMOVING ENFORCEMENT-DRIVEN AND NON-PREDICTABLE CRIMES")
 print("=" * 70)
-print(f"\nFile: {input_file}")
-print("\n⚠️  WARNING: This will overwrite the file directly!")
+print(f"\nInput:  {INPUT_FILE}")
+print(f"Output: {OUTPUT_FILE}")
 
 # Read data
 print("\n[1/4] Reading data...")
@@ -74,11 +82,11 @@ for crime, count in remaining_crimes.items():
     pct = (count / len(df_filtered)) * 100
     print(f"      {crime:45s}: {count:7,} ({pct:5.2f}%)")
 
-# Save back to same file
-print(f"\n[4/4] Saving to: {input_file}")
-df_filtered.to_csv(input_file, index=False)
+# Save to new file
+print(f"\n[4/4] Saving to: {OUTPUT_FILE}")
+df_filtered.to_csv(output_file, index=False)
 
-file_size_mb = os.path.getsize(input_file) / (1024 * 1024)
+file_size_mb = os.path.getsize(output_file) / (1024 * 1024)
 
 print("\n" + "=" * 70)
 print("✓ COMPLETE!")

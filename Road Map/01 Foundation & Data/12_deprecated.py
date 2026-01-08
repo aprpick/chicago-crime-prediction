@@ -4,6 +4,9 @@ Removes: Description, Domestic, Latitude, Longitude
 Edits file directly (overwrites it)
 """
 
+exit("deprecated")
+
+
 import pandas as pd
 import os
 

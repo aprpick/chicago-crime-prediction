@@ -1,57 +1,70 @@
 """
-Create filtered dataset - Take first 750K rows (2023-2025 crimes)
-Since file is sorted descending by date, row 750K = first 2023 record
+Filter raw crime data to extract only 2023, 2024, 2025 rows
 """
 
+# ============================================================
+# FILE PATHS - CONFIGURE HERE
+# ============================================================
+INPUT_FILE = '00_chicago_crime_2001_2025_(raw).csv'
+OUTPUT_FILE = '04.1_chicago_crime_2023_2025_(raw).csv'
+# ============================================================
+
 import pandas as pd
-import os
+from datetime import datetime
 
-# Get script directory and find CSV
-script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2001_2025_(raw).csv')
-output_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+def filter_crime_data_by_year(input_file, output_file, years=[2023, 2024, 2025]):
+    """
+    Filter crime data to only include specified years
+    """
+    print(f"Loading raw crime data from: {input_file}")
+    print("This may take a moment for large files...")
+    
+    # Read CSV
+    df = pd.read_csv(input_file)
+    print(f"Loaded {len(df):,} total rows")
+    
+    # Parse the Date column (format: 12/27/2025 12:00:00 AM)
+    print("\nParsing dates...")
+    df['parsed_date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y %I:%M:%S %p')
+    df['year'] = df['parsed_date'].dt.year
+    
+    # Filter for specified years
+    print(f"\nFiltering for years: {years}")
+    filtered_df = df[df['year'].isin(years)].copy()
+    
+    # Drop the temporary columns
+    filtered_df = filtered_df.drop(['parsed_date', 'year'], axis=1)
+    
+    # Statistics
+    print(f"\n=== Filtering Results ===")
+    print(f"Original rows: {len(df):,}")
+    print(f"Filtered rows: {len(filtered_df):,}")
+    print(f"Rows removed: {len(df) - len(filtered_df):,}")
+    print(f"Percentage kept: {len(filtered_df)/len(df)*100:.1f}%")
+    
+    # Show year breakdown
+    print("\n=== Year Breakdown ===")
+    year_counts = df.groupby(df['parsed_date'].dt.year).size()
+    for year in years:
+        if year in year_counts.index:
+            count = year_counts[year]
+            print(f"{year}: {count:,} rows")
+    
+    # Save filtered data
+    print(f"\nSaving filtered data to: {output_file}")
+    filtered_df.to_csv(output_file, index=False)
+    print(f"✓ Saved {len(filtered_df):,} rows to {output_file}")
+    
+    return filtered_df
 
-print("=" * 70)
-print("CREATING FILTERED DATASET - 2023-2025 (750K ROWS)")
-print("=" * 70)
-
-print(f"\n[1/4] Reading first 750,000 rows...")
-print("      (This gives us 2023-2025 data)")
-
-# Read first 750K rows - ALL COLUMNS (no usecols needed!)
-df = pd.read_csv(input_file, nrows=750000)
-
-print(f"      ✓ Loaded {len(df):,} rows")
-print(f"      Columns: {', '.join(df.columns)}")
-
-# Convert Date to datetime to check range
-print("\n[2/4] Checking date range...")
-df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y %I:%M:%S %p')
-
-print(f"      Date range: {df['Date'].min()} to {df['Date'].max()}")
-
-# Remove rows without coordinates
-print("\n[3/4] Removing rows with missing coordinates...")
-before = len(df)
-df = df.dropna(subset=['Latitude', 'Longitude'])
-removed = before - len(df)
-print(f"      Removed {removed:,} rows ({removed/before*100:.1f}%)")
-print(f"      Remaining: {len(df):,} rows")
-
-# Save
-print(f"\n[4/4] Saving to: {output_file}")
-df.to_csv(output_file, index=False)
-
-file_size_mb = os.path.getsize(output_file) / (1024 * 1024)
-
-print("\n" + "=" * 70)
-print("✓ SUCCESS!")
-print("=" * 70)
-print(f"File: chicago_crime_2023_2025.csv")
-print(f"Rows: {len(df):,}")
-print(f"Size: {file_size_mb:.1f} MB")
-print(f"Date range: {df['Date'].min().date()} to {df['Date'].max().date()}")
-print(f"Crime types: {df['Primary Type'].nunique()}")
-print(f"Communities: {df['Community Area'].nunique()}")
-print("=" * 70)
-print("\n✓ Ready for feature engineering!")
+if __name__ == "__main__":
+    print("="*60)
+    print("Filter Raw Crime Data: 2023-2025")
+    print("="*60)
+    print()
+    
+    df = filter_crime_data_by_year(INPUT_FILE, OUTPUT_FILE, years=[2023, 2024, 2025])
+    
+    print("\n" + "="*60)
+    print("✓ Complete! Filtered data saved successfully.")
+    print("="*60)

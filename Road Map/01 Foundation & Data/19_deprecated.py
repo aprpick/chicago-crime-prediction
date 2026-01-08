@@ -1,3 +1,6 @@
+
+exit("deprecated")
+
 import pandas as pd
 import os
 

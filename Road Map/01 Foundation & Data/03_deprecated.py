@@ -1,6 +1,7 @@
 """
 Print every 10,000th date value from Chicago crime data
 """
+exit("deprecated")
 
 import pandas as pd
 import os

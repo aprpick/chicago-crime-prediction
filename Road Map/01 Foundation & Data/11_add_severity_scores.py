@@ -1,19 +1,28 @@
 """
 Add severity scores using complete mapping of all 88 combinations
-Edits the file directly (overwrites it)
+Reads from: 10.1_rare_combos_removed.csv
+Writes to: 11.1_severity_added.csv
 """
+
+# ============================================================
+# FILE PATHS - CONFIGURE HERE
+# ============================================================
+INPUT_FILE = '10.1_rare_combos_removed.csv'
+OUTPUT_FILE = '11.1_severity_added.csv'
+# ============================================================
 
 import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+input_file = os.path.join(script_dir, INPUT_FILE)
+output_file = os.path.join(script_dir, OUTPUT_FILE)
 
 print("=" * 80)
 print("ADDING SEVERITY SCORES (Complete 88-combination mapping)")
 print("=" * 80)
-print(f"\nFile: {input_file}")
-print("\n⚠️  WARNING: This will overwrite the file directly!")
+print(f"\nInput:  {INPUT_FILE}")
+print(f"Output: {OUTPUT_FILE}")
 
 # ============================================================================
 # COMPLETE SEVERITY MAPPING (Primary Type, Description) -> Severity Score
@@ -178,19 +187,22 @@ for severity in sorted(df['Severity_Score'].dropna().unique()):
     for idx, row in examples.iterrows():
         print(f"        - {row['Primary Type']} - {row['Description']}")
 
-# Save
-print(f"\n[3/3] Saving to: {input_file}")
-df.to_csv(input_file, index=False)
+# Save to new file
+print(f"\n[3/3] Saving to: {OUTPUT_FILE}")
+df.to_csv(output_file, index=False)
 
-file_size_mb = os.path.getsize(input_file) / (1024 * 1024)
+file_size_mb = os.path.getsize(output_file) / (1024 * 1024)
 
 print("\n" + "=" * 80)
 print("✓ COMPLETE!")
 print("=" * 80)
+print(f"Input:  {INPUT_FILE}")
+print(f"Output: {OUTPUT_FILE}")
 print(f"Rows: {len(df):,}")
 print(f"Columns: {len(df.columns)}")
 print(f"File size: {file_size_mb:.1f} MB")
 print(f"New column: Severity_Score (1-10)")
-print(f"Severity range: {int(df['Severity_Score'].min())}-{int(df['Severity_Score'].max())}")
-print(f"Average severity: {df['Severity_Score'].mean():.2f}")
+if len(df[df['Severity_Score'].notna()]) > 0:
+    print(f"Severity range: {int(df['Severity_Score'].min())}-{int(df['Severity_Score'].max())}")
+    print(f"Average severity: {df['Severity_Score'].mean():.2f}")
 print("=" * 80)

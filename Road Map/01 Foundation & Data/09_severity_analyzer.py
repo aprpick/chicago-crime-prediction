@@ -1,17 +1,26 @@
 """
 Analyze Primary Types with their Description subcategories
 Shows hierarchical structure for severity assessment
+Reads from: 08.1_enforcement_crimes_removed.csv
+Output: Terminal only (no file created)
 """
+
+# ============================================================
+# FILE PATHS - CONFIGURE HERE
+# ============================================================
+INPUT_FILE = '08.1_enforcement_crimes_removed.csv'
+# ============================================================
 
 import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+input_file = os.path.join(script_dir, INPUT_FILE)
 
 print("=" * 80)
 print("PRIMARY TYPES AND THEIR DESCRIPTION SUBCATEGORIES")
 print("=" * 80)
+print(f"\nInput: {INPUT_FILE}")
 
 df = pd.read_csv(input_file)
 
@@ -62,3 +71,7 @@ print("\nPrimary Types with most subcategories:")
 top_subcats = subcats_per_primary.sort_values(ascending=False).head(5)
 for primary, count in top_subcats.items():
     print(f"  {primary:30s}: {count} subcategories")
+
+print("\n" + "=" * 80)
+print("Use this analysis to assign severity scores in the next step.")
+print("=" * 80)

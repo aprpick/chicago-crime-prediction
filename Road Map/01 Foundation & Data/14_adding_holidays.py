@@ -1,14 +1,28 @@
+"""
+Add holiday features (violent holidays and theft holidays)
+Reads from: 13.1_weekends_added.csv
+Writes to: 14.1_holidays_added.csv
+"""
+
+# ============================================================
+# FILE PATHS - CONFIGURE HERE
+# ============================================================
+INPUT_FILE = '13.1_weekends_added.csv'
+OUTPUT_FILE = '14.1_holidays_added.csv'
+# ============================================================
+
 import pandas as pd
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_file = os.path.join(script_dir, 'chicago_crime_2023_2025(working).csv')
+input_file = os.path.join(script_dir, INPUT_FILE)
+output_file = os.path.join(script_dir, OUTPUT_FILE)
 
 print("=" * 70)
 print("ADDING HOLIDAY FEATURES")
 print("=" * 70)
-print(f"\nFile: {input_file}")
-print("\n⚠️  WARNING: This will overwrite the file directly!")
+print(f"\nInput:  {INPUT_FILE}")
+print(f"Output: {OUTPUT_FILE}")
 
 # Violent crime holidays (NYE, July 4th, Thanksgiving)
 violent_holidays = [
@@ -63,13 +77,6 @@ df.drop('date_only', axis=1, inplace=True)
 
 print("      ✓ Added: is_violent_holiday, is_theft_holiday")
 
-# Reorder columns for clarity
-col_order = ['Crime_ID', 'Date', 'Community Area', 'Severity_Score', 
-             'hour', 'day_of_week', 'month', 'weekend_night_peak', 
-             'weekend_regular', 'is_violent_holiday', 'is_theft_holiday']
-col_order = [col for col in col_order if col in df.columns]
-df = df[col_order]
-
 print("\n" + "=" * 70)
 print("PREVIEW")
 print("=" * 70)
@@ -91,14 +98,16 @@ print(f"  Theft holiday crimes: {theft_count:,} ({theft_count/len(df)*100:.2f}%)
 print(f"  Both flags (overlap): {both_count:,} ({both_count/len(df)*100:.2f}%)")
 print(f"  Regular days: {len(df) - violent_count - theft_count + both_count:,}")
 
-print(f"\n[3/3] Saving to: {input_file}")
-df.to_csv(input_file, index=False)
+print(f"\n[3/3] Saving to: {OUTPUT_FILE}")
+df.to_csv(output_file, index=False)
 
-file_size_mb = os.path.getsize(input_file) / (1024 * 1024)
+file_size_mb = os.path.getsize(output_file) / (1024 * 1024)
 
 print("\n" + "=" * 70)
 print("✓ COMPLETE!")
 print("=" * 70)
+print(f"Input:  {INPUT_FILE}")
+print(f"Output: {OUTPUT_FILE}")
 print(f"Rows: {len(df):,}")
 print(f"Columns: {len(df.columns)}")
 print(f"File size: {file_size_mb:.1f} MB")
