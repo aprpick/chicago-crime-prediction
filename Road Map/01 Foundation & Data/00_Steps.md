@@ -114,4 +114,22 @@ Adding moon illumation
 Adding sun brightness
     
     23_add_solar_altitude.py
-    23_solar_altitude.csv
+    created - 23_solar_altitude.csv
+
+removing time stamp from working
+
+    25_pre_training_prune.py
+    created - 25_training_script.csv
+
+Pretraining prune script made but not used
+
+    25_pre_training_prune.py
+    created - nothing
+
+training complexity and time estimator script
+
+    26_training_complexity_estimator.py
+
+Data merged into hourly data, average annual serverity summed for examples in same community and same date.
+
+    27_shift_data_for_model.csv
