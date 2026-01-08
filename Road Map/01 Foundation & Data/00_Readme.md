@@ -7,8 +7,8 @@
 
 ## Script Overview
 
-### 01_deprecated.py
-**Status:** Deprecated
+### 01_run_pipeline.py
+**Purpose:** Attempts to run entire pipeline, currently untested
 
 ---
 
