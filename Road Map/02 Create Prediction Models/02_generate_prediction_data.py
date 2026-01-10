@@ -1,7 +1,7 @@
 """
 Generate Predictions for Power BI Dashboard
 Loads trained model and generates predictions for all combinations of:
-- 77 Community Areas
+- 77 Community_Area
 - 365 days (full year)
 - 8 time blocks per day
 
@@ -25,7 +25,7 @@ OUTPUT_FILE = '02.1_predictions_2026.csv'
 START_DATE = '2026-01-01'
 END_DATE = '2026-12-31'
 
-# Chicago community areas (1-77)
+# Chicago Community_Area (1-77)
 COMMUNITY_AREAS = list(range(1, 78))
 
 # Time blocks (0-7 representing 3-hour periods)
@@ -56,8 +56,8 @@ def load_feature_template():
     print(f"\nLoading training data template: {TRAINING_DATA}")
     df = pd.read_csv(TRAINING_DATA)
     
-    # Get feature columns (exclude target)
-    features = [col for col in df.columns if col != 'Severity_Score']
+    # Use only the 5 features the model was trained on
+    features = ['Community_Area', 'time_block', 'day_of_week', 'month', 'weekend_night_peak']
     print(f"✓ Features to predict with: {features}")
     
     return features, df
@@ -83,7 +83,7 @@ def generate_prediction_data(features, template_df):
     
     print(f"\nDate range: {START_DATE} to {END_DATE}")
     print(f"Days: {len(dates)}")
-    print(f"Community areas: {len(COMMUNITY_AREAS)}")
+    print(f"Community_Area: {len(COMMUNITY_AREAS)}")
     print(f"Time blocks per day: {len(TIME_BLOCKS)}")
     print(f"Total predictions: {len(dates) * len(COMMUNITY_AREAS) * len(TIME_BLOCKS):,}")
     
@@ -127,22 +127,7 @@ def generate_prediction_data(features, template_df):
     print(f"  - month (1-12)")
     print(f"  - weekend_night_peak (0/1) [auto-calculated]")
     print(f"\n✓ ALL features calculated automatically from date!")
-    
-    return df)
-                row['major_event'] = 0
-                
-                data.append(row)
-    
-    df = pd.DataFrame(data)
-    print(f"\n✓ Generated {len(df):,} prediction rows")
-    print(f"\nFeatures used:")
-    print(f"  - Community_Area (1-77)")
-    print(f"  - time_block (0-7)")
-    print(f"  - day_of_week (0-6)")
-    print(f"  - month (1-12)")
-    print(f"  - weekend_night_peak (0/1)")
-    print(f"  - major_event (0/1) [set manually for known events]")
-    
+     
     return df
 
 def make_predictions(model, df, features):
@@ -231,7 +216,7 @@ def save_predictions(df, output_file):
     
     # Select columns for Power BI (remove feature columns, keep useful ones)
     output_cols = [
-        'Date', 'Year', 'Month', 'Week', 'DayName', 'Is_Weekend',
+        'Date', 'Year', 'month', 'Week', 'DayName', 'Is_Weekend',  # lowercase 'month'
         'Community_Area', 
         'time_block', 'time_block_label', 'Time_Period',
         'Predicted_Severity', 'Risk_Level', 'Relative_to_Max'
@@ -304,7 +289,7 @@ def main():
     df_output = save_predictions(df, OUTPUT_FILE)
     
     # Print summary
-    print_summary(df_output)
+    print_summary(df)
     
     print("\n" + "="*70)
     print("✅ PREDICTIONS COMPLETE!")
